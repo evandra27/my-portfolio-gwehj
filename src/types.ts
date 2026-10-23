@@ -116,7 +116,7 @@ export interface Client {
 
 export interface Stat {
   /** Numeric target used by the count-up animation. */
-  value: number;
+  value: number | string;
   /** Appended after the number, e.g. `+` or `%`. */
   suffix?: string;
   label: string;

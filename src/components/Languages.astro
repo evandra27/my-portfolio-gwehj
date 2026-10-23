@@ -1,0 +1,87 @@
+---
+// src/components/Languages.astro
+const languages = [
+  { name: "Indonesian", level: "Native", rating: 3 },
+  { name: "English", level: "Intermediate", rating: 2 },
+  { name: "Mandarin", level: "Beginner", rating: 1 },
+];
+---
+
+<div class="lang-card">
+  <div class="lang-header">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+      <path d="M2 12h20"></path>
+    </svg>
+    <span>LANGUAGES</span>
+  </div>
+
+  <div class="lang-list">
+    {languages.map((lang) => (
+      <div class="lang-item">
+        <div>
+          <div class="lang-name">{lang.name}</div>
+          <div class="lang-level">{lang.level}</div>
+        </div>
+        <div class="lang-bars">
+          {[1, 2, 3].map((step) => (
+            <div class={`bar ${step <= lang.rating ? 'active' : ''}`} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .lang-card {
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    margin: 1.5rem 0;
+  }
+  .lang-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+    margin-bottom: 1rem;
+  }
+  .lang-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .lang-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lang-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .lang-level {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+  .lang-bars {
+    display: flex;
+    gap: 0.35rem;
+  }
+  .bar {
+    height: 0.5rem;
+    width: 1.5rem;
+    border-radius: 9999px;
+    background-color: rgba(150, 150, 150, 0.2);
+  }
+  .bar.active {
+    background-color: currentColor;
+  }
+</style>

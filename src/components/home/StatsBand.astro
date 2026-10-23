@@ -32,7 +32,7 @@ import { stats, statsHeading, reel } from '~/data/stats';
         {
           stats.map((stat) => (
             <div class="stat">
-              <b data-count={stat.value} data-suffix={stat.suffix}>{`${stat.value}${stat.suffix ?? ''}`}</b>
+            <b>{`${stat.value}${stat.suffix ?? ''}`}</b>
               <span>{stat.label}</span>
             </div>
           ))

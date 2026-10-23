@@ -63,7 +63,13 @@ const jsonLd = graph([
     <section class="wrap" style="padding-bottom:var(--sec)">
       <div class="case-media rev">
         {
-          d.image ? (
+          d.images && d.images.length > 0 ? (
+            <div class="project-carousel">
+              {d.images.map((img, idx) => (
+                <img src={img} alt={`${d.title} slide ${idx + 1}`} class="carousel-slide" />
+              ))}
+            </div>
+          ) : d.image ? (
             <img
               src={d.image.src}
               alt={d.image.alt}
@@ -73,7 +79,7 @@ const jsonLd = graph([
               decoding="async"
             />
           ) : d.artwork ? (
-            <Artwork name={d.artwork} label={`${d.title} — project artwork`} />
+            <Artwork name={d.artwork} label={`${d.title} – project artwork`} />
           ) : null
         }
       </div>
@@ -98,7 +104,7 @@ const jsonLd = graph([
 
         <aside class="case-aside rev rev-d1" aria-label="Project details">
           <div class="case-fact">
-            <b>Client</b>
+            <b>Project Type</b>
             <p>{d.client}</p>
           </div>
           <div class="case-fact">
@@ -108,7 +114,7 @@ const jsonLd = graph([
           {
             d.services.length > 0 && (
               <div class="case-fact">
-                <b>Services</b>
+                <b>My Role</b>
                 <ul>{d.services.map((s) => <li>{s}</li>)}</ul>
               </div>
             )
@@ -144,3 +150,48 @@ const jsonLd = graph([
 
   <Cta />
 </BaseLayout>
+
+<style is:global>
+  /* 1. Ubah background wadah utama jadi putih */
+  .case-media, 
+  .case-media.rev {
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  /* 2. Ubah background carousel & sela-sela antar foto jadi putih */
+  .project-carousel {
+    display: flex !important;
+    gap: 16px !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    border-radius: 20px;
+    padding-bottom: 16px;
+    width: 100% !important;
+    background: #ffffff !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-slide {
+    flex: 0 0 85% !important;
+    min-width: 85% !important;
+    max-width: 85% !important;
+    scroll-snap-align: start;
+    border-radius: 16px;
+    object-fit: cover;
+    height: auto !important;
+  }
+
+  /* 3. Ubah warna rel & jarak scrollbar bawah jadi putih */
+  .project-carousel::-webkit-scrollbar {
+    height: 6px;
+  }
+  .project-carousel::-webkit-scrollbar-track {
+    background: #ffffff !important;
+  }
+  .project-carousel::-webkit-scrollbar-thumb {
+    background: #cccccc !important;
+    border-radius: 10px;
+  }
+</style>

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { service, class: className, headingLevel: Heading = 'h3' } = Astro.props;
-const { title, icon, number, excerpt, tags } = service.data;
+const { title, icon, number, excerpt, description, tags } = service.data;
 ---
 
 <article class:list={['svc-card', className]}>
@@ -17,12 +17,17 @@ const { title, icon, number, excerpt, tags } = service.data;
     <span class="svc-ic"><Icon name={icon} class="ic-lg" /></span>
     <span class="svc-num">{number}</span>
   </div>
-  <Heading><a class="stretch" href={`/services/${service.id}/`}>{title}</a></Heading>
-  <p class="muted">{excerpt}</p>
+  <Heading>
+    <a class="stretch" href={service.id ? `/services/${service.id}/` : '#services'}>{title}</a>
+  </Heading>
+  
+  <!-- Mengambil excerpt atau fallback ke description / body -->
+  <p class="muted">{excerpt || description || service.body}</p>
+  
   {
-    tags.length > 0 && (
+    tags && tags.length > 0 && (
       <div class="svc-tags">
-        {tags.map((tag) => <span>{tag}</span>)}
+        {tags.map((tag: string) => <span>{tag}</span>)}
       </div>
     )
   }

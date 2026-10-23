@@ -1,56 +1,179 @@
 ---
-import Icon from '../Icon.astro';
-import Button from '../Button.astro';
-import Signature from '../art/Signature.astro';
-import siteConfig from '~/config/site';
-import { about } from '~/data/highlights';
+// Import komponen Languages yang sudah kita buat sebelumnya
+import Languages from '../Languages.astro';
 
-interface Props {
-  /** `h1` when the About page renders this as its main heading. */
-  headingLevel?: 'h1' | 'h2';
-  id?: string;
-}
-
-const { headingLevel: Heading = 'h2', id = 'about' } = Astro.props;
+// Daftar Pengalaman Kamu
+const experiences = [
+{
+    eyebrow: "ORGANIZATION EXPERIENCE",
+    title: "Logistics & Equipment Staff — UKM Band Expo",
+    date: "2025 – Present",
+    body: "Sharpened direct promotional and communication skills by engaging with hundreds of incoming freshmen, while collaborating in an operational team to ensure seamless booth execution during campus expo events.",
+    image: "/images/ukm-band.jpeg", // Replace with your image path in public/images/
+    bullets: [
+      "Direct Promotion & Stakeholder Engagement: Actively promoted UKM Band's flagship initiatives to new students, driving membership sign-ups through interactive communication.",
+      "Teamwork & Event Operations: Coordinated closely with the logistics team to manage visitor flow, booth layout, electrical power setup, and musical equipment.",
+      "On-Site Technical Troubleshooting: Swiftly identified and resolved real-time audio equipment issues and operational bottlenecks during peak event traffic."
+    ]
+  },
+  {
+    eyebrow: "COMMUNITY OUTREACH",
+    title: "Guitar Fundamentals Instructor — Community Service (PKM)",
+    date: "September 2026",
+    body: "Taught fundamental acoustic and electric guitar concepts to junior high and high school students as part of a university community outreach program at Sekolah Kemurnian.",
+    image: "/images/pkm.jpg", // Ganti dengan path foto PKM kamu di public/images/
+    bullets: [
+      "Curriculum & Music Mentoring: Designed and delivered structured learning materials on basic guitar chords, rhythm, and playing techniques tailored for young learners.",
+      "Public Speaking & Teaching: Built strong rapport with students, explaining complex musical concepts in an engaging and accessible manner.",
+      "Student Engagement: Facilitated interactive hands-on practice sessions, encouraging active student participation and confidence in learning music."
+    ]
+  }
+];
 ---
 
-<section class="wrap sec" id={id} aria-labelledby="about-h">
-  <div class="about-grid">
-    <div class="about-img rev">
-      <img
-        src={about.image.src}
-        alt={about.image.alt}
-        width={about.image.width}
-        height={about.image.height}
-        loading="lazy"
-        decoding="async"
-      />
-      <div class="about-badge">
-        <b>{about.badge.value}</b>
-        <span>{about.badge.label}</span>
+<section class="wrap sec" id="experience">
+  <div class="exp-grid">
+    
+    <!-- KIRI: Foto & Tombol Navigasi -->
+    <div class="exp-img-wrapper">
+      <img id="exp-img" src={experiences[0].image} alt="Experience Image" class="exp-img" />
+      
+      <!-- Navigasi Tombol di Atas Foto -->
+      <div class="exp-controls">
+        <button id="prev-btn" class="nav-btn" aria-label="Previous">←</button>
+        <span id="exp-indicator" class="indicator">1 / {experiences.length}</span>
+        <button id="next-btn" class="nav-btn" aria-label="Next">→</button>
       </div>
     </div>
 
-    <div class="rev rev-d1">
-      <p class="eyebrow">{about.eyebrow}</p>
-      <Heading class="d2 about-h" id="about-h">{about.title}</Heading>
-      <p class="lead">{about.body}</p>
+    <!-- KANAN: Teks yang Ikut Berubah -->
+    <div class="exp-content">
+      <p class="eyebrow" id="exp-eyebrow">{experiences[0].eyebrow}</p>
+      <h2 class="d2" id="exp-title">{experiences[0].title}</h2>
+      <p class="exp-date" id="exp-date">{experiences[0].date}</p>
+      <p class="lead" id="exp-body">{experiences[0].body}</p>
 
-      <ul class="about-list">
-        {
-          about.points.map((point) => (
-            <li>
-              <i><Icon name="check" class="ic-xs" /></i>
-              <span>{point}</span>
-            </li>
-          ))
-        }
+      <ul class="about-list" id="exp-bullets">
+        {experiences[0].bullets.map((bullet) => (
+          <li>{bullet}</li>
+        ))}
       </ul>
 
-      <div class="about-sign">
-        <Signature label={`Signature of ${siteConfig.author}`} />
-        <Button href={about.ctaHref} variant="outline">{about.ctaLabel}</Button>
+      <!-- Widget Bahasa -->
+      <div style="margin-top: 1.5rem;">
+        <Languages />
       </div>
     </div>
+
   </div>
 </section>
+
+<!-- Script Client-Side untuk Switch Konten -->
+<script define:vars={{ experiences }}>
+  let currentIndex = 0;
+
+  const imgEl = document.getElementById('exp-img');
+  const eyebrowEl = document.getElementById('exp-eyebrow');
+  const titleEl = document.getElementById('exp-title');
+  const dateEl = document.getElementById('exp-date');
+  const bodyEl = document.getElementById('exp-body');
+  const bulletsEl = document.getElementById('exp-bullets');
+  const indicatorEl = document.getElementById('exp-indicator');
+
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  function updateExperience(index) {
+    const exp = experiences[index];
+    if (!exp) return;
+
+    // Smooth transition fade-out/in
+    imgEl.style.opacity = '0.3';
+    
+    setTimeout(() => {
+      imgEl.src = exp.image;
+      eyebrowEl.textContent = exp.eyebrow;
+      titleEl.textContent = exp.title;
+      dateEl.textContent = exp.date;
+      bodyEl.textContent = exp.body;
+      indicatorEl.textContent = `${index + 1} / ${experiences.length}`;
+
+      bulletsEl.innerHTML = exp.bullets.map(b => `<li>${b}</li>`).join('');
+      imgEl.style.opacity = '1';
+    }, 150);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + experiences.length) % experiences.length;
+    updateExperience(currentIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % experiences.length;
+    updateExperience(currentIndex);
+  });
+</script>
+
+<style>
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .exp-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+  .exp-img-wrapper {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: rgba(0,0,0,0.05);
+    aspect-ratio: 4 / 3;
+  }
+  .exp-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease-in-out;
+  }
+  .exp-controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    color: white;
+  }
+  .nav-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    transition: opacity 0.2rem;
+  }
+  .nav-btn:hover {
+    opacity: 0.7;
+  }
+  .indicator {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .exp-date {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+</style>

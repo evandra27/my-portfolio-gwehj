@@ -1,22 +1,176 @@
 ---
-import SectionHeading from '../SectionHeading.astro';
-import { awards, awardsHeading } from '~/data/awards';
+// src/components/home/Awards.astro
+
+const certifications = [
+  {
+    title: "Mendix Rapid Developer Certification",
+    issuer: "Mendix",
+    year: "2026",
+    image: "/images/certs/mendix.jpg",
+    description: "Certified in rapid low-code application development, domain modeling, microflow logic, and agile process integration."
+  },
+  {
+    title: "Azure AI Basic Fundamental",
+    issuer: "Microsoft x Komdigi",
+    year: "2025",
+    image: "/images/certs/azure.jpg",
+    description: "Completed cloud-based AI fundamentals, covering practical machine learning concepts and Azure AI service integration."
+  },
+  {
+    title: "Market Research & Business Communication (CEFR C2.2)",
+    issuer: "BINUS University",
+    year: "2025",
+    image: "/images/certs/beelingua-c2.2.jpg",
+    description: "Demonstrated advanced proficiency in market research methodologies, strategic analysis, and executive business communication."
+  },
+  {
+    title: "Professional Office English (CEFR C1.2)",
+    issuer: "BINUS University",
+    year: "2025",
+    image: "/images/certs/beelingua-c1.2.jpg",
+    description: "Certified in workplace communication, technical documentation standards, and formal business correspondence."
+  },
+  {
+    title: "Creative Writing English (CEFR C1.1)",
+    issuer: "BINUS University",
+    year: "2025",
+    image: "/images/certs/beelingua-c1.1.jpg",
+    description: "Proficient in strategic copywriting, content structuring, and narrative development for digital communication."
+  }
+];
 ---
 
-<section class="recognition" id="recognition" aria-labelledby="rec-h">
-  <div class="wrap sec">
-    <SectionHeading class="rev" eyebrow={awardsHeading.eyebrow} title={awardsHeading.title} id="rec-h" />
-    <div class="awards">
-      {
-        awards.map((award) => (
-          <article class="award rev">
-            <span class="award-yr">{award.year}</span>
-            <h3>{award.title}</h3>
-            <p>{award.detail}</p>
-            <span class="pill pill-lime">{award.tag}</span>
-          </article>
-        ))
-      }
-    </div>
+<section class="wrap sec" id="certifications">
+  <div class="cert-header">
+    <p class="eyebrow">CERTIFICATIONS & CREDENTIALS</p>
+    <h2 class="d2">Verified Skills & Knowledge.</h2>
+  </div>
+
+  <div class="cert-grid">
+    {certifications.map((cert) => (
+      <div class="cert-card">
+        <!-- Frame Gambar Sertifikat -->
+        <div class="cert-img-wrapper">
+          <img src={cert.image} alt={cert.title} class="cert-img" loading="lazy" />
+        </div>
+
+        <div class="cert-content">
+          <div class="cert-card-header">
+            <span class="cert-issuer">{cert.issuer}</span>
+            <span class="cert-year">{cert.year}</span>
+          </div>
+          <h3 class="cert-title">{cert.title}</h3>
+          <p class="cert-desc">{cert.description}</p>
+        </div>
+      </div>
+    ))}
   </div>
 </section>
+
+<style>
+  /* BACKGROUND UTAMA SECTION (Gelap #2b2b2b) */
+  #certifications {
+    background-color: #2b2b2b;
+    padding: 3.5rem 2rem;
+    border-radius: 1.5rem;
+  }
+
+  .cert-header {
+    margin-bottom: 2.5rem;
+  }
+  .cert-header .d2 {
+    color: #ffffff;
+  }
+  .cert-header .eyebrow {
+    color: #a1a1aa;
+  }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .cert-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .cert-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* KARTU DIKUNCI WARNA PUTIH (#ffffff) */
+  .cert-card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+  }
+  
+  .cert-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #f4f4f5;
+    border-bottom: 1px solid #e4e4e7;
+  }
+  .cert-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .cert-card:hover .cert-img {
+    transform: scale(1.04);
+  }
+
+  .cert-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1;
+  }
+  .cert-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cert-issuer {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #27272a;
+    background: #f4f4f5;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+  }
+  .cert-year {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #71717a;
+  }
+  .cert-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+    color: #09090b;
+  }
+  .cert-desc {
+    font-size: 0.85rem;
+    color: #52525b;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

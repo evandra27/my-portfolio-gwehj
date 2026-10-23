@@ -1,15 +1,15 @@
 import type { Stat } from '~/types';
 
 export const stats: Stat[] = [
-  { value: 15, label: 'Years independent' },
-  { value: 40, suffix: '+', label: 'Teams partnered' },
-  { value: 96, suffix: '%', label: 'Would hire again' },
+  { value: '3.85', label: 'Current GPA' },
+  { value: 10, suffix: '+', label: 'Projects & Case Studies' },
+  { value: 3, label: 'Core Roles (BA, SA, UI/UX)' },
 ];
 
 /** Headline above the stats band, split so the tail can be dimmed. */
 export const statsHeading = {
-  lead: 'Design is mostly deciding what to leave out,',
-  tail: 'then defending that decision for six straight weeks.',
+  lead: 'Great digital solutions bridge business goals,',
+  tail: 'with intuitive design and reliable system architecture.',
 };
 
 /**

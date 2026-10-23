@@ -1,26 +1,77 @@
 ---
+// src/components/home/Services.astro
 import Button from '../Button.astro';
 import SectionHeading from '../SectionHeading.astro';
 import ServiceCard from '../cards/ServiceCard.astro';
-import { servicesHeading } from '~/data/highlights';
-import { getCollection } from 'astro:content';
-import { isVisible } from '~/lib/utils';
 
-const services = (await getCollection('services'))
-  .filter(isVisible)
-  .sort((a, b) => a.data.order - b.data.order);
+const services = [
+  {
+    body: "Analyzing existing business workflows, identifying operational bottlenecks, and mapping clear BPMN process models.",
+    data: {
+      number: "S/01",
+      title: "Business Process Analysis",
+      excerpt: "Analyzing existing business workflows, identifying operational bottlenecks, and mapping clear BPMN process models.",
+      description: "Analyzing existing business workflows, identifying operational bottlenecks, and mapping clear BPMN process models.",
+      icon: "grid",
+      tags: ["BPMN 2.0", "Workflows", "BRD/PRD"]
+    }
+  },
+  {
+    body: "Translating business requirements into technical blueprints, entity-relationship schemas, and system architectures.",
+    data: {
+      number: "S/02",
+      title: "System & Database Design",
+      excerpt: "Translating business requirements into technical blueprints, entity-relationship schemas, and system architectures.",
+      description: "Translating business requirements into technical blueprints, entity-relationship schemas, and system architectures.",
+      icon: "code",
+      tags: ["ERD", "System Flow", "Architecture"]
+    }
+  },
+  {
+    body: "Designing intuitive user journeys, wireframes, and interactive high-fidelity prototypes aligned with user needs.",
+    data: {
+      number: "S/03",
+      title: "UI/UX & Product Prototyping",
+      excerpt: "Designing intuitive user journeys, wireframes, and interactive high-fidelity prototypes aligned with user needs.",
+      description: "Designing intuitive user journeys, wireframes, and interactive high-fidelity prototypes aligned with user needs.",
+      icon: "device",
+      tags: ["Wireframing", "User Flows", "Figma"]
+    }
+  },
+  {
+    body: "Structuring business data with Power Pivot and Excel analysis, alongside low-code process automation.",
+    data: {
+      number: "S/04",
+      title: "Data Modeling & Automation",
+      excerpt: "Structuring business data with Power Pivot and Excel analysis, alongside low-code process automation.",
+      description: "Structuring business data with Power Pivot and Excel analysis, alongside low-code process automation.",
+      icon: "chart",
+      tags: ["Power Pivot", "Data Analysis", "Low-Code"]
+    }
+  }
+] as any;
 ---
 
 <section class="wrap sec sec-top" id="services" aria-labelledby="svc-h">
-  <SectionHeading class="rev" eyebrow={servicesHeading.eyebrow} title={servicesHeading.title} id="svc-h">
-    <Button href={servicesHeading.ctaHref} variant="outline">{servicesHeading.ctaLabel}</Button>
+  <SectionHeading
+    class="rev"
+    eyebrow="ENGAGEMENTS"
+    title="Four ways I can add value."
+    id="svc-h"
+  >
+    <Button href="#contact" variant="outline">Contact me</Button>
   </SectionHeading>
 
   <div class="svc">
     {
-      services.map((service, i) => (
+      services.map((service: any, i: number) => (
         <ServiceCard service={service} class:list={['rev', i % 3 > 0 && `rev-d${i % 3}`]} />
       ))
     }
+  </div>
+
+  <!-- BAGIAN CERTIFICATIONS DENGAN ID UNTUK NAVIGATION -->
+  <div id="certifications" class="certifications-section" style="margin-top: 4rem;">
+    {/* Jika kamu sudah punya komponen/elemen sertifikasi tersendiri, taruh di sini */}
   </div>
 </section>

@@ -26,18 +26,19 @@ const jsonLd = graph([personSchema(siteConfig), websiteSchema(siteConfig)]);
   appendSiteName={false}
   jsonLd={jsonLd}
 >
-  <Hero />
-  <TrustedStrip />
-  <Collaborate />
-  <StatsBand />
-  <About />
-  <Services />
-  <Toolkit />
-  <Work />
-  <Process />
-  <Awards />
-  <Testimonials />
-  <Journal />
-  <Faq />
-  <Cta id="contact" />
+<Hero />
+<Work />        <!-- 1. Projek naik ke paling atas agar langsung terlihat -->
+<About />       <!-- 2. Pengalaman kampus, organisasi, & latar belakang -->
+<Awards />  
+<Services />    <!-- 3. Sertifikat & pencapaian lomba -->    <!-- 4. Tech stack, tools, & skills -->
+<!-- <Process />     5. Alur kerja / metodologi (opsional) -->
+
+<!-- Section tambahan di bawah ini bisa di-comment jika belum ada isinya -->
+<!-- <Testimonials /> -->
+<!-- <Journal /> -->
+<!-- <Faq /> -->
+
+<Cta id="contact" />
 </BaseLayout>
+</BaseLayout>
+<Services />

@@ -21,7 +21,7 @@ const { id = 'cta' } = Astro.props;
     <p>{cta.body}</p>
 
     <div class="cta-actions">
-      <Button href="/contact/" variant="ink">{cta.primaryLabel}</Button>
+      <Button href="/CV_Evandra_Santoso.pdf" variant="ink" download="CV_Evandra_Santoso.pdf">{cta.primaryLabel}</Button>
       <a class="btn btn-outline-ink" href={`tel:${siteConfig.contact.phoneHref}`}>
         <span>{siteConfig.contact.phone}</span>
         <i><Icon name="phone" class="ic-sm" /></i>

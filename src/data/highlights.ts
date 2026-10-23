@@ -6,12 +6,12 @@
 
 export const hero = {
   greeting: 'Hello. The name is',
-  /** Rendered on two lines. */
   nameLines: ['Evandra', 'Santoso'],
   intro:
     'Information Systems student at Bina Nusantara University bridging UI/UX design with Business & System Analysis. Experienced in crafting user-centered digital products and optimizing workflows with UiPath automation.',
-  ctaLabel: 'Contact me',
-  ctaHref: '/contact/',
+  ctaLabel: 'Download CV',
+  ctaHref: '/CV_Evandra_Santoso.pdf',
+  
   photo: {
     src: '/images/foto-evan.png',
     alt: 'Robin Vale, art director, photographed against a plain studio wall',
@@ -22,7 +22,7 @@ export const hero = {
     roleLine: ['Information Systems Student / BINUS University', 'BA, SA & UI/UX Design'],
     title: ['Analysts', 'UI/UX'],
     /** Small avatar stack — decorative, so the images carry empty alt text. */
-    stack: ['/images/avatar-02.webp', '/images/avatar-01.webp', '/images/avatar-03.webp'],
+    stack: ['/images/avatar-02.webp', '/images/avatar-01.webp', '/images/avatar-03.webp', '/images/canva.png', '/images/avatar-03.webp', '/images/drawio.webp', '/images/apex.jpg', '/images/excel.webp', '/images/word.webp'],
     stackBadge: '98%',
     kpi: '10+',
     kpiLabel: 'Academic & Personal Project',
@@ -34,7 +34,7 @@ export const collaborate = {
   eyebrow: 'LET\'S CONNECT',
   title: 'Looking for a dedicated intern to help analyze, design, and optimize your systems?',
   body: 'I am currently open for internship opportunities. Let\'s discuss how my skills in Business Analysis, System Analysis, and UI/UX Design can contribute to your team\'s goals.',
-  badge: 'Independent since 2011',
+  // badge: 'Independent since 2011',
   ctaLabel: 'Send me the brief',
   ctaHref: '/contact/',
   /**
@@ -69,14 +69,14 @@ export const about = {
 
 export const servicesHeading = {
   eyebrow: 'Engagements',
-  title: 'Six ways to put me to work.',
+  title: 'Four ways I can add value.',
   ctaLabel: 'Ask for a scope',
   ctaHref: '/contact/',
 };
 
 export const workHeading = {
-  eyebrow: 'Selected work',
-  title: 'Six projects, six different arguments.',
+  eyebrow: 'Featured Works',
+  title: 'Selected Projects & Case Studies.',
 };
 
 export const journalHeading = {
@@ -87,7 +87,7 @@ export const journalHeading = {
 };
 
 export const cta = {
-  title: 'Have you got something that deserves doing properly?',
-  body: 'Tell me what is broken, who it is breaking for, and what happens if it stays that way. That is enough for me to come back with a scope and a number.',
-  primaryLabel: 'Send the brief',
+  title: 'Have a Project or Internship Opportunity in Mind?',
+  body: "Looking for an IS student who bridges business requirements and tech implementation? Let's connect and discuss how I can contribute to your team.",
+  primaryLabel: 'Download CV',
 };

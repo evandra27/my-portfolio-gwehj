@@ -13,16 +13,16 @@ import type { SiteConfig } from '~/types';
  * back here through `import.meta.env.SITE`.
  */
 export const siteConfig: SiteConfig = {
-  name: 'SWP Freelancer Portfolio',
+  name: 'Evandra Santoso',
 
   logo: {
-    header: { src: '/images/header-logo.webp', width: 164, height: 58 },
-    footer: { src: '/images/footer-logo.webp', width: 164, height: 58 },
+    header: { src: '/images/Logo-evan.jpg', width: 164, height: 58 },
+    footer: { src: '/images/Logo-evan.jpg', width: 164, height: 58 },
   },
 
   author: 'Evandra Santoso',
   role: 'Business Analyst, System Analyst & UI/UX Designer',
-  title: 'SWP Freelancer Portfolio — Art direction & interface design',
+  title: 'Evandra Santoso Portfolio',
   description:
     'Portfolio of Evandra Santoso, an Information Systems student skilled in UI/UX Design, Business Process Mapping, System Analysis, and UiPath Automation.',
   url: import.meta.env.SITE ?? 'https://swp-freelancer-portfolio.vercel.app',
@@ -49,7 +49,7 @@ export const siteConfig: SiteConfig = {
   about:
     'Personal portfolio of Evandra Santoso, Information Systems student at Bina Nusantara University specializing in Business Analysis, System Analysis, and UI/UX Design.',
 
-  copyrightHolder: 'SWP Frelancer Portfolio',
+  copyrightHolder: 'Evandra Santoso',
 };
 
 export default siteConfig;
